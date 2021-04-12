@@ -9,13 +9,13 @@ This script reads in a file, and then "cleans" the text; basically removing any 
 A web scraper using Selenium, Beautiful Soup, and Pandas.  This script scrapes all text for a given URL and outputs the data in a pandas dataframe.
 Using `urllib.request.urlopen()` will only retrieve the raw html file from the server, with dynamic elements unrendered by the 
 browser. Thus, any text found withn these dynamic features will not be captured.  
-  
-A solution to this problem is to have the dynamic features rendered by the browser, then capture the text
+
+    A solution to this problem is to have the dynamic features rendered by the browser, then capture the text
 using selenium using `driver.get(urlpage)`.  Once the text is captured, the <script> and <style> tags are removed with Beautiful Soup, as they 
 are not necessary.  Special characters can be filtered by using a translation table, `str.maketrans('','',spc_chars)`
 where the special characters are mapped to ''.  Then each character will be scanned, and if a special character is found, it is translated to '' 
 using `s.translate()`.  
   
-Finally the words are counted using `Counter().most_common` and stored as a Python list of (word, count) tuples. 
+    Finally the words are counted using `Counter().most_common` and stored as a Python list of (word, count) tuples. 
 The list can be sorted by count number using `key=lambda x: x[1]` as a parameter to the `Sorted()` function.
 The sorted list is then placed in a Pandas dataframe for presentation.
