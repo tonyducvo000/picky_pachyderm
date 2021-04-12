@@ -1,4 +1,3 @@
-# picky_pachyderm
 
 Repo for my collection of python scripts.
 
