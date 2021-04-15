@@ -16,13 +16,20 @@ driver = webdriver.Firefox(options=opts)
 driver.get(urlpage)
 #time.sleep(60)
 
+
+#scroll to bottom of page, then
 #grab source via selenium driver
+
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+time.sleep(3)
+
 source = driver.page_source
 driver.close()
 
 # f = open("scratch.txt", "w", encoding="utf-8")
 # f.write(source)
 # f.close()
+
 
 #remove <script> and <style> tags and make the list
 soupSrc = BeautifulSoup(source, features="html.parser")
@@ -35,6 +42,9 @@ strips = list(soupSrc.stripped_strings)
 #translate special characters to blank
 trans_table = str.maketrans('', '', spc_chars)
 res = [s.translate(trans_table) for s in strips]
+
+
+
 
 #get count for the words, sort it by count, and put in dataframe
 count = Counter(res).most_common()
